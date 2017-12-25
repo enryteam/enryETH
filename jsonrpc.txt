@@ -1,0 +1,40 @@
+nohup geth --rpc --rpcapi eth,web3,personal,miner,pxtool --rpcaddr 127.0.0.1 --rpcport 8545 --dev --datadir "dataroot/test" 2>>geth.log &
+
+# 调用RPC接口
+# 查看账户信息
+[plain] view plain copy
+curl -X POST -H "Content-Type":application/json --data '{"jsonrpc":"2.0", "method":"eth_accounts","params":[],"id":67}' 127.0.0.1:8545
+# 查看账户余额
+[plain] view plain copy
+curl -X POST -H "Content-Type":application/json --data '{"jsonrpc":"2.0", "method":"eth_getBalance","params":["0xcc9b6505f5c35bd4ba135320dff87cef8f77be68","latest"],"id":67}' 127.0.0.1:8545
+# 查看区块高度
+[plain] view plain copy
+curl -X POST -H "Content-Type":application/json --data '{"jsonrpc":"2.0", "method":"eth_blockNumber","params":[],"id":67}' 127.0.0.1:8545
+# 解锁账户
+[plain] view plain copy
+curl -X POST -H "Content-Type":application/json --data '{"jsonrpc":"2.0", "method":"personal_unlockAccount","params":["0xcc9b6505f5c35bd4ba135320dff87cef8f77be68","password",300],"id":67}' 127.0.0.1:8545
+# 发送交易
+[plain] view plain copy
+curl -X POST -H "Content-Type":application/json --data '{"jsonrpc":"2.0","method":"eth_sendTransaction","params": [{
+  "from": "0xcc9b6505f5c35bd4ba135320dff87cef8f77be68",
+  "to": "0x1376020d6783f9d6908c0644e1c3d01b0bf3ba9e",
+  "value": "0x1"
+}],
+"id":67}' 127.0.0.1:8545
+# 查看交易状态
+[plain] view plain copy
+curl -X POST -H "Content-Type":application/json --data '{"jsonrpc":"2.0", "method":"miner_start","params":[],"id":67}' 127.0.0.1:8545
+# 开启挖矿
+[plain] view plain copy
+curl -X POST -H "Content-Type":application/json --data '{"jsonrpc":"2.0", "method":"miner_start","params":[],"id":67}' 127.0.0.1:8545
+# 结束挖矿
+[plain] view plain copy
+curl -X POST -H "Content-Type":application/json --data '{"jsonrpc":"2.0", "method":"miner_stop","params":[],"id":67}' 127.0.0.1:8545
+
+
+curl -X POST -H "Content-Type":application/json --data '{"jsonrpc":"2.0", "method":"personal_newAccount","params":["18061208098"],"id":67}' >
+{"jsonrpc":"2.0","id":67,"result":"0x1376020d6783f9d6908c0644e1c3d01b0bf3ba9e"}
+
+curl -X POST -H "Content-Type":application/json --data '{"jsonrpc":"2.0", "method":"eth_coinbase","params":["0xcc9b6505f5c35bd4ba135320dff87cef8f77be68"],"id":67}' 127.0.0.1:8545
+
+curl -X POST -H "Content-Type":application/json --data '{"jsonrpc":"2.0", "method":"txpool_status","params":[],"id":67}' 127.0.0.1:8545

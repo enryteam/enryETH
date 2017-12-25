@@ -1,0 +1,4 @@
+
+Time    : 2017-12-25 09:40:46
+Request : {"jsonrpc":"2.0","id":4,"method":"eth_sendTransaction","params":[{"from":"0x52af5b3208a1ad7a6f97b74f16b17a89ceb0782b","to":"0x041aed7ef9621fcd15bd1a5a1095034affaae41c","value":0.0001}]}
+Return  : {"jsonrpc":"2.0","id":4,"error":{"code":-32602,"message":"invalid argument 0: json: cannot unmarshal non-string into Go struct field SendTxArgs.value of type *hexutil.Big"}}
